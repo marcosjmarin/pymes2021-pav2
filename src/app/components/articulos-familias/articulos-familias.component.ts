@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  ArticuloFamilia,
+  ArticulosFamilias
+} from '../../models/articulo-familia';
 
 @Component({
   selector: 'app-articulos-familias',
@@ -6,10 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./articulos-familias.component.css']
 })
 export class ArticulosFamiliasComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
