@@ -10,6 +10,9 @@ import {
   styleUrls: ['./articulos-familias.component.css']
 })
 export class ArticulosFamiliasComponent implements OnInit {
+  Items = ArticulosFamilias;
+  Titulo = 'Articulos Familias';
+
   constructor() {}
 
   ngOnInit() {}
