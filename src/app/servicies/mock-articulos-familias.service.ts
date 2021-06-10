@@ -5,4 +5,7 @@ import { ArticulosFamilias } from '../models/articulo-familia';
 @Injectable({ providedIn: 'root' })
 export class MockArticulosFamiliasService {
   constructor() {}
+  get() {
+    return of(ArticulosFamilias);
+  }
 }
