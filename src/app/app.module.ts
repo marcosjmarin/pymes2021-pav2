@@ -12,6 +12,7 @@ import { ArticulosFamiliasComponent } from './components/articulos-familias/arti
 import { MockArticulosFamiliasService } from './servicies/mock-articulos-familias.service';
 import { ArticulosFamiliasService } from './servicies/articulos-familias.service';
 import { MenuComponent } from './components/menu/menu.component';
+import { ArticulosComponent } from './components/articulos/articulos.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { MenuComponent } from './components/menu/menu.component';
     RouterModule.forRoot([
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
-      { path: 'articulosfamilias', component: ArticulosFamiliasComponent }
+      { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
+      { path: 'articulos', component: ArticulosComponent }
     ])
   ],
   declarations: [
@@ -29,7 +31,8 @@ import { MenuComponent } from './components/menu/menu.component';
     HelloComponent,
     InicioComponent,
     ArticulosFamiliasComponent,
-    MenuComponent
+    MenuComponent,
+    ArticulosComponent
   ],
   bootstrap: [AppComponent],
   providers: [
