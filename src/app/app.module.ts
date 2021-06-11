@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
+
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { InicioComponent } from './components/inicio/inicio.component';
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
