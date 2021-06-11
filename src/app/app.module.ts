@@ -11,16 +11,31 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { ArticulosFamiliasComponent } from './components/articulos-familias/articulos-familias.component';
 import { MockArticulosFamiliasService } from './servicies/mock-articulos-familias.service';
 import { ArticulosFamiliasService } from './servicies/articulos-familias.service';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+      { path: 'inicio', component: InicioComponent },
+      { path: 'articulosfamilias', component: ArticulosFamiliasComponent }
+    ])
+  ],
   declarations: [
     AppComponent,
     HelloComponent,
     InicioComponent,
-    ArticulosFamiliasComponent
+    ArticulosFamiliasComponent,
+    MenuComponent
   ],
   bootstrap: [AppComponent],
-  providers: [MockArticulosFamiliasService, ArticulosFamiliasService]
+  providers: [
+    MockArticulosFamiliasService,
+    ArticulosFamiliasService,
+    { provide: APP_BASE_HREF, useValue: '/' }
+  ]
 })
 export class AppModule {}
