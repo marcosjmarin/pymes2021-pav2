@@ -93,7 +93,17 @@ export class ArticulosComponent implements OnInit {
   // Obtengo un registro especifico según el Id
   BuscarPorId(Dto, AccionABMC) {
     window.scroll(0, 0); // ir al incio del scroll
-    this.AccionABMC = AccionABMC;
+
+    this.articulosService.getById(Dto.IdArticulo).subscribe((res: any) => {
+      const itemCopy = { ...res }; // hacemos copia para no modificar el array original del mock
+
+      //formatear fecha de  ISO 8061 a string dd/MM/yyyy
+      var arrFecha = itemCopy.FechaAlta.substr(0, 10).split('-');
+      itemCopy.FechaAlta = arrFecha[2] + '/' + arrFecha[1] + '/' + arrFecha[0];
+
+      this.FormRegistro.patchValue(itemCopy);
+      this.AccionABMC = AccionABMC;
+    });
   }
 
   Consultar(Dto) {
