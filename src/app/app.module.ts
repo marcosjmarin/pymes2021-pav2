@@ -13,6 +13,7 @@ import { MockArticulosFamiliasService } from './servicies/mock-articulos-familia
 import { ArticulosFamiliasService } from './servicies/articulos-familias.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { ArticulosComponent } from './components/articulos/articulos.component';
+import { MockArticulosService } from './servicies/mock-articulos.service';
 
 @NgModule({
   imports: [
@@ -38,7 +39,7 @@ import { ArticulosComponent } from './components/articulos/articulos.component';
   providers: [
     MockArticulosFamiliasService,
     ArticulosFamiliasService,
-    { provide: APP_BASE_HREF, useValue: '/' }
+    { provide: APP_BASE_HREF, useValue: '/', providers: [MockArticulosService] }
   ]
 })
 export class AppModule {}
