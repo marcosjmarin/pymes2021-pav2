@@ -46,16 +46,19 @@
         <th class="text-center">Nombre</th>
         <th class="text-center">Precio</th>
         <th class="text-center">Stock</th>
+        <th class="text-center"> Familia</th>
         <th class="text-center">Fecha de Alta</th>
         <th class="text-center">Activo</th>
         <th class="text-center text-nowrap">Acciones</th>
+
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of Items">
         <td>{{item.Nombre | uppercase}}</td>
-        <td class="text-right">{{item.Precio | currency}}</td>
+        <td class="text-right">{{item.Precio | currency:'$'}}</td>
         <td class="text-right">{{item.Stock}}</td>
+        <td>{{GetArticuloFamiliaNombre(item.IdArticuloFamilia)}}</td>
         <td>{{item.FechaAlta| date:'dd/MM/yyyy'}}</td>
         <td>{{item.Activo ? 'SI' : 'NO'}}</td>
         <td class="text-center text-nowrap">
@@ -84,6 +87,7 @@
             <span class="fas fa-{{item.Activo ? 'times':'check'}}"></span>
           </button>
         </td>
+
       </tr>
     </tbody>
   </table>
@@ -94,7 +98,9 @@
         <span class="label label-default">Registros: {{RegistrosTotal}}</span>
       </div>
       <div class="col text-center">
-        Directiva paginador aqui
+        <ngb-pagination [(page)]="Pagina" (pageChange)="Buscar()" [pageSize]="10" [maxSize]="10"
+          [collectionSize]="RegistrosTotal"></ngb-pagination>
+
       </div>
       <div class="col text-right">
         <button
@@ -125,7 +131,17 @@
         Nombre <span class="text-danger">*</span>
       </label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="Nombre"  />
+        <input type="text" class="form-control text-uppercase" formControlName="Nombre" />
+        <span class="text-danger" *ngIf="(FormRegistro.controls.Nombre.touched || submitted) 
+                        && FormRegistro.controls.Nombre.errors?.required">
+                    Dato requerido.
+        </span>
+
+        <span class="text-danger" *ngIf="
+        FormRegistro.controls.Nombre.errors?.minlength || FormRegistro.controls.Nombre.errors?.maxlength ">
+            Dato texto, 4 a 55 caracteres.
+        </span>
+
       </div>
     </div>
 
@@ -141,6 +157,14 @@
           class="form-control"
           formControlName="Precio"
         />
+        <span class="text-danger" *ngIf="FormRegistro.controls.Precio.errors 
+          && FormRegistro.controls.Precio.errors.required">
+          Dato Requerido
+          </span>
+        <span class="text-danger" *ngIf="FormRegistro.controls.Precio.errors?.pattern">
+                    Dato numérico, 1 a 7 dígitos.
+ </span>
+
       </div>
     </div>
 
@@ -148,7 +172,7 @@
     <div class="form-group row">
       <label class="col-form-label col-sm-2 offset-sm-2" for="Stock">
         Stock <span class="text-danger">*</span>
-      </label>
+        </label>
       <div class="col-sm-6">
         <input
           type="text"
@@ -156,6 +180,14 @@
           class="form-control"
           formControlName="Stock"
         />
+        <span class="text-danger" *ngIf="FormRegistro.controls.Stock.errors 
+          && FormRegistro.controls.Stock.errors.required">
+          Dato Requerido
+        </span>
+        <span class="text-danger" *ngIf="FormRegistro.controls.Stock.errors?.pattern">
+                    Dato numérico, 1 a 7 dígitos.
+ </span>
+
       </div>
     </div>
 
@@ -163,7 +195,7 @@
     <div class="form-group row">
       <label class="col-form-label col-sm-2 offset-sm-2" for="CodigoDeBarra">
         Codigo De Barra <span class="text-danger">*</span>
-      </label>
+          </label>
       <div class="col-sm-6">
         <input
           type="text"
@@ -171,6 +203,14 @@
           class="form-control"
           formControlName="CodigoDeBarra"
         />
+        <span class="text-danger" *ngIf="FormRegistro.controls.CodigoDeBarra.errors 
+          && FormRegistro.controls.CodigoDeBarra.errors.required">
+          Dato Requerido
+        </span>
+        <span class="text-danger" *ngIf="FormRegistro.controls.CodigoDeBarra.errors?.pattern">
+                    Dato numérico, 13 dígitos.
+ </span>
+
       </div>
     </div>
 
@@ -195,6 +235,10 @@
             ‌{{opt.Nombre }}
           </option>
         </select>
+        <span class="text-danger" *ngIf="FormRegistro.controls.IdArticuloFamilia.errors 
+          && FormRegistro.controls.IdArticuloFamilia.errors.required">
+          Dato Requerido
+        </span>
       </div>
     </div>
 
@@ -209,6 +253,13 @@
           name="FechaAlta"
           formControlName="FechaAlta"
         />
+        <span class="text-danger" *ngIf="FormRegistro.controls.FechaAlta.errors 
+          && FormRegistro.controls.FechaAlta.errors.required">
+          Dato Requerido
+        </span>
+        <span class="text-danger" *ngIf="FormRegistro.controls.FechaAlta.errors?.pattern">
+                    Dato fecha, formato dd/mm/aaaa.
+        </span>
       </div>
     </div>
 
@@ -249,7 +300,9 @@
   </div>
 
   <!--texto: Revisar los datos ingresados...-->
-  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="false">
-    <span class="fas fa-exclamation-sign"></span>{{Mensajes['RD']}}
+  <!--texto: Revisar los datos ingresados...-->
+  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="FormRegistro.invalid">
+    <i class="fas fa-exclamation-sign"></i>{{Mensajes['RD']}}
   </div>
+
 </form>
