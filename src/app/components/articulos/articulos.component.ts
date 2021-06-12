@@ -85,6 +85,9 @@ export class ArticulosComponent implements OnInit {
   Agregar() {
     this.AccionABMC = 'A';
     this.FormRegistro.reset({ Activo: true, IdArticulo: 0 });
+      this.submitted = false;
+    this.FormRegistro.markAsUntouched();
+
   }
 
   // Buscar segun los filtros, establecidos en FormRegistro
@@ -128,6 +131,9 @@ export class ArticulosComponent implements OnInit {
       return;
     }
     this.BuscarPorId(Dto, 'M');
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched();
+
   }
 
   // grabar tanto altas como modificaciones

@@ -7,12 +7,10 @@
       Nombre:
     </label>
     <div class="col-sm-3">
-      <input
-        type="text"
-        name="Nombre"
-        class="form-control"
-        formControlName = "Nombre"
-      />
+      <input type="text" class="form-control" formControlName="Nombre"
+         [ngClass]="{'is-invalid': (FormRegistro.controls.Nombre.touched || submitted)  
+            && FormRegistro.controls.Nombre.errors}" />
+
     </div>
     <label class="col-form-label col-sm-2  offset-sm-1">
       Activo:
@@ -301,8 +299,9 @@
 
   <!--texto: Revisar los datos ingresados...-->
   <!--texto: Revisar los datos ingresados...-->
-  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="FormRegistro.invalid">
+  <div id="divMsjFormRegistro" class="row alert alert-danger" *ngIf="submitted && FormRegistro.invalid">
     <i class="fas fa-exclamation-sign"></i>{{Mensajes['RD']}}
   </div>
+
 
 </form>
