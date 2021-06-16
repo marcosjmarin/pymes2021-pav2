@@ -22,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ArticulosService } from './servicies/articulos.service';
 import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
 import { ModalDialogService } from './servicies/modal-dialog.service';
+import { EmpresasComponent } from './components/empresas/empresas.component';
+import { EmpresasService } from './servicies/empresas.service';
 
 @NgModule({
   imports: [
@@ -35,7 +37,8 @@ import { ModalDialogService } from './servicies/modal-dialog.service';
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
       { path: 'articulosfamilias', component: ArticulosFamiliasComponent },
-      { path: 'articulos', component: ArticulosComponent }
+      { path: 'articulos', component: ArticulosComponent },
+      { path: 'empresas', component: EmpresasComponent }
     ])
   ],
   declarations: [
@@ -45,13 +48,15 @@ import { ModalDialogService } from './servicies/modal-dialog.service';
     ArticulosFamiliasComponent,
     MenuComponent,
     ArticulosComponent,
-    ModalDialogComponent
+    ModalDialogComponent,
+    EmpresasComponent
   ],
   bootstrap: [AppComponent],
   providers: [
     MockArticulosFamiliasService,
     ArticulosFamiliasService,
     ModalDialogService,
+    EmpresasService,
     { provide: APP_BASE_HREF, useValue: '/' }
   ]
 })
