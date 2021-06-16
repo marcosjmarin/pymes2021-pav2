@@ -4,8 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {
+  NgbPaginationModule,
+  NgbModalModule
+} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
@@ -18,6 +20,8 @@ import { ArticulosComponent } from './components/articulos/articulos.component';
 import { MockArticulosService } from './servicies/mock-articulos.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ArticulosService } from './servicies/articulos.service';
+import { ModalDialogComponent } from './components/modal-dialog/modal-dialog.component';
+import { ModalDialogService } from './servicies/modal-dialog.service';
 
 @NgModule({
   imports: [
@@ -26,6 +30,7 @@ import { ArticulosService } from './servicies/articulos.service';
     HttpClientModule,
     ReactiveFormsModule,
     NgbPaginationModule,
+    NgbModalModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
@@ -39,12 +44,14 @@ import { ArticulosService } from './servicies/articulos.service';
     InicioComponent,
     ArticulosFamiliasComponent,
     MenuComponent,
-    ArticulosComponent
+    ArticulosComponent,
+    ModalDialogComponent
   ],
   bootstrap: [AppComponent],
   providers: [
     MockArticulosFamiliasService,
     ArticulosFamiliasService,
+    ModalDialogService,
     { provide: APP_BASE_HREF, useValue: '/' }
   ]
 })
