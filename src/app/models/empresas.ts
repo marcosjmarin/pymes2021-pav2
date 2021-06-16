@@ -1,5 +1,5 @@
 export class Empresas {
-  IdArticuloFamilia: number;
+  IdEmpresa: number;
   RazonSocial: string;
   CantidadEmpleados: number;
   FechaFundacion: string;

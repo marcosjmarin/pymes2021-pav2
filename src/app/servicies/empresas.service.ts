@@ -16,4 +16,7 @@ export class EmpresasService {
   constructor(private httpClient: HttpClient) {
     this.resourceUrl = 'https://pav2.azurewebsites.net/api/empresas ';
   }
+  get() {
+    return this.httpClient.get(this.resourceUrl);
+  }
 }
