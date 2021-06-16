@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Empresas } from '../../models/empresas';
 import { EmpresasService } from '../../servicies/empresas.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-empresas',
@@ -26,6 +27,8 @@ export class EmpresasComponent implements OnInit {
   ngOnInit() {
     this.GetFamiliasArticulos();
   }
+  FormBusqueda: FormGroup;
+  FormRegistro: FormGroup;
 
   GetFamiliasArticulos() {
     this.empresasService.get().subscribe((res: Empresas[]) => {
