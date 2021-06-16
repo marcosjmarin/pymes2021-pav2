@@ -35,4 +35,28 @@ export class EmpresasComponent implements OnInit {
       this.Items = res;
     });
   }
+  submitted: boolean = false;
+  Agregar() {
+    this.AccionABMC = 'A';
+    this.FormRegistro.reset({ Activo: true, IdArticulo: 0 });
+    this.submitted = false;
+    this.FormRegistro.markAsUntouched();
+  }
+  Grabar() {
+    if (this.FormRegistro.invalid) {
+      return;
+    }
+  }
+  Volver() {
+    this.AccionABMC = 'L';
+  }
+  Buscar() {
+    //this.modalDialogService.BloquearPantalla();
+    this.empresasService
+      .get(this.FormBusqueda.value.RazonSocial, this.FormBusqueda.value.Activo, this.Pagina)
+      .subscribe((res: any) => {
+        this.Items = res.Items;
+        this.RegistrosTotal = res.RegistrosTotal;
+        this.modalDialogService.DesbloquearPantalla();
+      });
 }

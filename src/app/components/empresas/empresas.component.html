@@ -1,5 +1,15 @@
 <h3>{{Titulo}} <small>{{TituloAccionABMC[AccionABMC]}}</small></h3>
-<div>
+<form name="FormBusqueda" class="bg-light" [formGroup]='FormBusqueda' *ngIf="AccionABMC == 'L'">
+  <button type="button" class="btn btn-primary" (click)="Buscar();">
+      <span class="fas fa-search"> </span> Buscar
+    </button>
+  <button type="button" class="btn btn-primary" (click)="Agregar()">
+      <span class="fas fa-plus"> </span>
+      Agregar
+    </button>
+
+</form>
+<div id="divTablaResultados" *ngIf="AccionABMC == 'L' &&  Items?.length > 0">
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -18,3 +28,21 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Botones Grabar, Cancelar/Volver' -->
+<div class="row justify-content-center">
+  <button
+      type="button"
+      class="btn btn-primary"
+      (click)="Grabar()"
+      *ngIf=" AccionABMC == 'A'  "
+    >
+      <span class="fas fa-check"></span> Grabar
+    </button>
+  &nbsp;
+  <button type="button" class="btn btn-warning" (click)="Volver()">
+      <span class="fas fa-undo"></span>
+      {{AccionABMC == 'A'? 'Cancelar' : 'Volver'}}
+    </button>
+</div>
